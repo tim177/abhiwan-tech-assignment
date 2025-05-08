@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/product.css" />
     <link rel="stylesheet" href="./css/ingredients.css" />
     <link rel="stylesheet" href="./css/hero.css" />
+    <link rel="stylesheet" href="./css/statistics.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
@@ -25,12 +26,21 @@
     </div>
 
     <!-- Header & Navigation -->
-    <header>
+    <header class="site-header">
       <div class="container">
         <div class="logo">
           <a href="/">ALCAMI</a>
         </div>
-        <nav>
+
+        <!-- Hamburger Menu Button (Mobile Only) -->
+        <button class="hamburger-menu" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav class="main-nav">
           <ul>
             <li><a href="#" class="active">Home</a></li>
             <li class="dropdown">
@@ -42,23 +52,46 @@
             <li><a href="#">Contact</a></li>
           </ul>
         </nav>
+
+        <!-- Header Actions -->
         <div class="header-actions">
-          <div class="search-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
+          <!-- Search Icon and Form -->
+          <div class="search-container">
+            <button class="search-icon" aria-label="Search">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+
+            <div class="search-form">
+              <form>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  class="search-input"
+                />
+                <button
+                  type="button"
+                  class="search-close"
+                  aria-label="Close search"
+                >
+                  &times;
+                </button>
+              </form>
+            </div>
           </div>
+
           <a href="#" class="cta-button">Try Alcami <span>&rarr;</span></a>
         </div>
       </div>
@@ -592,6 +625,154 @@
       </div>
     </section>
 
+    <!-- Statistics Section -->
+    <section class="statistics-section">
+      <div class="container">
+        <div class="statistics-container">
+          <div class="statistic">
+            <h3>84%</h3>
+            <p>Reported increased energy throughout their day</p>
+          </div>
+
+          <div class="statistic">
+            <h3>78%</h3>
+            <p>Reported feeling more focused</p>
+          </div>
+
+          <div class="statistic">
+            <h3>89%</h3>
+            <p>Reported a sense of calmness & steady mood</p>
+          </div>
+
+          <div class="statistic">
+            <h3>90%</h3>
+            <p>
+              Reported feeling an overall increased wellness in their gut skin,
+              hair, and physical health
+            </p>
+          </div>
+        </div>
+
+        <div class="divider">
+          <span>---</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+      <div class="container">
+        <h2 class="comparison-title">
+          Why Alcami is the #1 Choice for your Productivity and Performance
+        </h2>
+
+        <div class="comparison-table-container">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>BENEFITS</th>
+                <th>
+                  <img
+                    src="./assets/table_1.png"
+                    alt="Alcami"
+                    class="product-logo"
+                  />
+                  <span class="product-name">ALCAMI</span>
+                </th>
+                <th>
+                  <img
+                    src="./assets/table_2.png"
+                    alt="MUD/WTR"
+                    class="product-logo"
+                  />
+                  <span class="product-name">MUD/WTR</span>
+                </th>
+                <th>
+                  <img
+                    src="./assets/table_3.png"
+                    alt="RYZE"
+                    class="product-logo"
+                  />
+                  <span class="product-name">RYZE</span>
+                </th>
+                <th>
+                  <img
+                    src="./assets/table_4.jpg"
+                    alt="EVERYDAY DOSE"
+                    class="product-logo"
+                  />
+                  <span class="product-name">EVERYDAY DOSE</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Potency Concentration</td>
+                <td>10x</td>
+                <td>1x</td>
+                <td>1x</td>
+                <td>10x</td>
+              </tr>
+              <tr>
+                <td>Extracts Concentrates</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Effects You Can Feel</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="cross">✕</span></td>
+              </tr>
+              <tr>
+                <td># of Beneficial Ingredients</td>
+                <td>9</td>
+                <td>5</td>
+                <td>6</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Incredible Taste</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="cross">✕</span></td>
+              </tr>
+              <tr>
+                <td>No Caffeine</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="cross">✕</span></td>
+              </tr>
+              <tr>
+                <td>No Starch or Mycellated Oats</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="cross">✕</span></td>
+              </tr>
+              <tr>
+                <td>100% Fruiting Body Mushroom</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="try-risk-free-container">
+          <a href="#" class="try-risk-free-button"
+            >Try It Risk-Free <span>&rarr;</span></a
+          >
+        </div>
+      </div>
+    </section>
     <!-- From the Founders Section -->
     <section class="founders-section">
       <div class="container">

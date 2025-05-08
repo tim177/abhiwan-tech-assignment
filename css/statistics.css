@@ -1,0 +1,152 @@
+/* Statistics Section */
+.statistics-section {
+  background-image: url("../assets/background_image.jpg"),
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-blend-mode: overlay;
+
+  background-size: cover;
+  height: 10rem;
+  background-position: center;
+  color: white;
+}
+
+.statistics-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.statistic {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+  padding: 20px;
+}
+
+.statistic h3 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.statistic p {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.divider {
+  text-align: center;
+  margin: 60px 0 20px;
+  color: white;
+}
+
+/* Comparison Section */
+.comparison-section {
+  padding: 60px 0 80px;
+  background-color: #f9f9f7;
+}
+
+.comparison-title {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comparison-table-container {
+  overflow-x: auto;
+  margin-bottom: 40px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 15px 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.comparison-table th {
+  font-weight: 600;
+  vertical-align: bottom;
+  padding-bottom: 20px;
+}
+
+.comparison-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+.product-logo {
+  display: block;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+  object-fit: contain;
+}
+
+.product-name {
+  display: block;
+  font-size: 14px;
+}
+
+.check {
+  color: #5a7247;
+  font-size: 20px;
+}
+
+.cross {
+  color: #999;
+  font-size: 20px;
+}
+
+.try-risk-free-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.try-risk-free-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #c8a951;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.try-risk-free-button:hover {
+  background-color: #b69843;
+}
+
+/* Responsive styles for statistics and comparison */
+@media (max-width: 768px) {
+  .statistics-container {
+    flex-direction: column;
+  }
+
+  .comparison-title {
+    font-size: 26px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 10px 5px;
+    font-size: 14px;
+  }
+
+  .product-logo {
+    width: 60px;
+    height: 60px;
+  }
+}

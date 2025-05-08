@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", initializePage);
+document.addEventListener("DOMContentLoaded", () => {
+  initializePage();
+  initMobileMenu();
+});
 
 function initializePage() {
   initProductGallery();
@@ -43,20 +46,18 @@ function initProductGallery() {
   });
 
   prevBtn.addEventListener("click", () => {
-    let newIndex = currentImageIndex - 1;
-    if (newIndex < 0) {
-      newIndex = galleryImages.length - 1;
-    }
+    const newIndex =
+      (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
     updateMainImage(newIndex);
   });
 
   nextBtn.addEventListener("click", () => {
-    let newIndex = currentImageIndex + 1;
-    if (newIndex >= galleryImages.length) {
-      newIndex = 0;
-    }
+    const newIndex = (currentImageIndex + 1) % galleryImages.length;
     updateMainImage(newIndex);
   });
+
+  // Set initial image
+  updateMainImage(0);
 }
 
 function initAddToCartFunctionality() {
@@ -85,32 +86,22 @@ function initAddToCartFunctionality() {
   };
 
   function updateAddToCartLink() {
-    let selectedFlavor;
-    flavorOptions.forEach((option) => {
-      if (option.checked) {
-        selectedFlavor = option.value;
-      }
-    });
-
-    let selectedPurchaseType;
-    purchaseOptions.forEach((option) => {
-      if (option.checked) {
-        selectedPurchaseType = option.value;
-      }
-    });
+    const selectedFlavor = [...flavorOptions].find((opt) => opt.checked)?.value;
+    const selectedPurchaseType = [...purchaseOptions].find(
+      (opt) => opt.checked
+    )?.value;
 
     if (selectedFlavor && selectedPurchaseType) {
       addToCartBtn.href = cartUrls[selectedFlavor][selectedPurchaseType];
     }
   }
 
-  flavorOptions.forEach((option) => {
-    option.addEventListener("change", updateAddToCartLink);
-  });
-
-  purchaseOptions.forEach((option) => {
-    option.addEventListener("change", updateAddToCartLink);
-  });
+  flavorOptions.forEach((option) =>
+    option.addEventListener("change", updateAddToCartLink)
+  );
+  purchaseOptions.forEach((option) =>
+    option.addEventListener("change", updateAddToCartLink)
+  );
 
   updateAddToCartLink();
 }
@@ -126,9 +117,7 @@ function initTestimonialsSlider() {
   const cardWidth = cards[0].offsetWidth + 20;
 
   function scrollToCard(index) {
-    if (index < 0) index = 0;
-    if (index > cards.length - 1) index = cards.length - 1;
-
+    index = Math.max(0, Math.min(index, cards.length - 1));
     currentIndex = index;
 
     slider.scrollTo({
@@ -140,24 +129,15 @@ function initTestimonialsSlider() {
     paginationDots[index].classList.add("active");
   }
 
-  prevButton.addEventListener("click", () => {
-    scrollToCard(currentIndex - 1);
-  });
+  prevButton.addEventListener("click", () => scrollToCard(currentIndex - 1));
+  nextButton.addEventListener("click", () => scrollToCard(currentIndex + 1));
 
-  nextButton.addEventListener("click", () => {
-    scrollToCard(currentIndex + 1);
-  });
-
-  paginationDots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      scrollToCard(index);
-    });
-  });
+  paginationDots.forEach((dot, index) =>
+    dot.addEventListener("click", () => scrollToCard(index))
+  );
 
   slider.addEventListener("scroll", () => {
-    const scrollPosition = slider.scrollLeft;
-    const newIndex = Math.round(scrollPosition / cardWidth);
-
+    const newIndex = Math.round(slider.scrollLeft / cardWidth);
     if (newIndex !== currentIndex) {
       currentIndex = newIndex;
       paginationDots.forEach((dot) => dot.classList.remove("active"));
@@ -173,15 +153,94 @@ function initFaqAccordion() {
 
   faqItems.forEach((item) => {
     const question = item.querySelector(".faq-question");
-
     question.addEventListener("click", () => {
-      faqItems.forEach((otherItem) => {
-        if (otherItem !== item && otherItem.classList.contains("active")) {
-          otherItem.classList.remove("active");
-        }
+      faqItems.forEach((other) => {
+        if (other !== item) other.classList.remove("active");
       });
-
       item.classList.toggle("active");
     });
+  });
+}
+
+function initMobileMenu() {
+  const hamburgerBtn = document.querySelector(".hamburger-menu");
+  const mainNav = document.querySelector(".main-nav");
+  const searchIcon = document.querySelector(".search-icon");
+  const searchForm = document.querySelector(".search-form");
+  const searchClose = document.querySelector(".search-close");
+  const header = document.querySelector(".site-header");
+
+  hamburgerBtn?.addEventListener("click", function () {
+    this.classList.toggle("active");
+    mainNav.classList.toggle("active");
+
+    if (header.classList.contains("search-expanded")) {
+      header.classList.remove("search-expanded");
+      searchForm.classList.remove("active");
+    }
+  });
+
+  searchIcon?.addEventListener("click", function () {
+    const isMobile = window.innerWidth <= 992;
+
+    if (isMobile) {
+      header.classList.toggle("search-expanded");
+      if (mainNav.classList.contains("active")) {
+        hamburgerBtn.classList.remove("active");
+        mainNav.classList.remove("active");
+      }
+
+      setTimeout(() => {
+        document.querySelector(".search-input")?.focus();
+      }, 100);
+    } else {
+      searchForm.classList.toggle("active");
+
+      if (searchForm.classList.contains("active")) {
+        setTimeout(() => {
+          document.querySelector(".search-input")?.focus();
+        }, 300);
+      }
+    }
+  });
+
+  searchClose?.addEventListener("click", function () {
+    if (header.classList.contains("search-expanded")) {
+      header.classList.remove("search-expanded");
+    } else {
+      searchForm.classList.remove("active");
+    }
+  });
+
+  document.addEventListener("click", function (event) {
+    if (
+      mainNav.classList.contains("active") &&
+      !mainNav.contains(event.target) &&
+      !hamburgerBtn.contains(event.target)
+    ) {
+      mainNav.classList.remove("active");
+      hamburgerBtn.classList.remove("active");
+    }
+
+    if (
+      searchForm.classList.contains("active") &&
+      !searchForm.contains(event.target) &&
+      !searchIcon.contains(event.target)
+    ) {
+      searchForm.classList.remove("active");
+      if (header.classList.contains("search-expanded")) {
+        header.classList.remove("search-expanded");
+      }
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 992) {
+      header.classList.remove("search-expanded");
+      searchForm.classList.add("active");
+    } else {
+      searchForm.classList.remove("active");
+      header.classList.add("search-expanded");
+    }
   });
 }
